@@ -11,7 +11,7 @@ namespace CombatSimulator
     {
         static void Main(string[] args)
         {
-
+            Console.WindowHeight = 45;
             //GameIntro();
             PlayGame();
             //Console.ReadKey();
@@ -34,6 +34,7 @@ namespace CombatSimulator
             while (playerPoints > 0 && computerPoints > 0)
             {
                 Console.Clear();
+                //calls all these functions to keep the game screen updating
                 GameInstructions();
                 gameStats(playerPoints, computerPoints);
                 KittyMoods(1);
@@ -65,10 +66,10 @@ namespace CombatSimulator
                 {
                     //if the option is 1 then it calls the fuction attack
                     //depending what the function returns then it substract the point from the gamer points
-                    case 1: playerPoints = playerPoints - (pointsDeducted = Attack(70, 5, 15));
+                    case 1: computerPoints = computerPoints - (pointsDeducted = Attack(70, 5, 15));
                         //if the player points are less than 0 then it sets the gamer points to zero
                         if (playerPoints < 0) { playerPoints = 0; }
-                        Console.Clear();
+                        //calls all these functions to keep the game screen updating
                         GameInstructions();
                         gameStats(playerPoints, computerPoints);
                         KittyMoods(1);
@@ -84,7 +85,7 @@ namespace CombatSimulator
                         computerPoints = computerPoints - (pointsDeducted = Attack(80, 10, 15));
                         //if the player points are less than 0 then it sets the gamer points to zero
                         if (playerPoints < 0) { playerPoints = 0; }
-                        
+                        //calls all these functions to keep the game screen updating
                         GameInstructions();
                         gameStats(playerPoints, computerPoints);
                         KittyMoods(1);
@@ -99,12 +100,12 @@ namespace CombatSimulator
                         computerPoints = computerPoints - (pointsDeducted = Attack(80, 10, 20));
                         //if the player points are less than 0 then it sets the gamer points to zero
                         if (playerPoints < 0) { playerPoints = 0; }
+                        //calls all these functions to keep the game screen updating
                         GameInstructions();
                         gameStats(playerPoints, computerPoints);
                         KittyMoods(1);
                         SubMoodsTetx(0, pointsDeducted);
                         gameOptions();
-
                         Delay(2000);
 
                         break;
@@ -113,16 +114,16 @@ namespace CombatSimulator
 
                 //for the computer turn it calls the function attack
                 //depending what the function returns then it substract the point from the computer
-                computerPoints = computerPoints - (pointsDeducted = Attack(80, 5, 15));
+                playerPoints = playerPoints - (pointsDeducted = Attack(80, 5, 15));
                 //if the player points are less than 0 then it sets the computer points to zero
                 if (computerPoints < 0) { computerPoints = 0; }
                 gameStats(playerPoints, computerPoints);
+                //calls all these functions to keep the game screen updating
                 GameInstructions();
                 gameStats(playerPoints, computerPoints);
                 KittyMoods(1);
                 SubMoodsTetx(1, pointsDeducted);
                 gameOptions();
-
                 Delay(2000);
 
 
@@ -131,21 +132,22 @@ namespace CombatSimulator
             //if the player points are greater than 0 then the gamer wins
             if (playerPoints > 0)
             {
+
+                //calls all these functions to keep the game screen updating
                 GameInstructions();
                 gameStats(playerPoints, computerPoints);
                 KittyMoods(3);
                 Messages();
-
                 gameOptions();
             }
             else
             {
                 //if the player points are less than 0 then the computer wins
+                //calls all these functions to keep the game screen updating
                 GameInstructions();
                 gameStats(playerPoints, computerPoints);
                 KittyMoods(2);
                 Messages();
-
                 gameOptions();
             }
 
@@ -276,17 +278,18 @@ namespace CombatSimulator
         /// </summary>
         public static void GameInstructions()
         {
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(@"    ___           _ _     _      _     _   _                        
-   /   \___  _ __( ) |_  | | ___| |_  | |_| |__   ___               
-  / /\ / _ \| '_ \/| __| | |/ _ \ __| | __| '_ \ / _ \              
- / /_// (_) | | | || |_  | |  __/ |_  | |_| | | |  __/              
-/___,' \___/|_| |_| \__| |_|\___|\__|  \__|_| |_|\___|              
-   ___      _                        _       _                      
-  / __\__ _| |_   ___  ___ _ __ __ _| |_ ___| |__   /\_/\___  _   _ 
- / /  / _` | __| / __|/ __| '__/ _` | __/ __| '_ \  \_ _/ _ \| | | |
-/ /__| (_| | |_  \__ \ (__| | | (_| | || (__| | | |  / \ (_) | |_| |
-\____/\__,_|\__| |___/\___|_|  \__,_|\__\___|_| |_|  \_/\___/ \__,_|");
+            Console.WriteLine(@"         ___           _ _     _      _     _   _                        
+        /   \___  _ __( ) |_  | | ___| |_  | |_| |__   ___               
+       / /\ / _ \| '_ \/| __| | |/ _ \ __| | __| '_ \ / _ \              
+      / /_// (_) | | | || |_  | |  __/ |_  | |_| | | |  __/              
+     /___,' \___/|_| |_| \__| |_|\___|\__|  \__|_| |_|\___|              
+        ___      _                        _       _                      
+       / __\__ _| |_   ___  ___ _ __ __ _| |_ ___| |__   /\_/\___  _   _ 
+      / /  / _` | __| / __|/ __| '__/ _` | __/ __| '_ \  \_ _/ _ \| | | |
+     / /__| (_| | |_  \__ \ (__| | | (_| | || (__| | | |  / \ (_) | |_| |
+     \____/\__,_|\__| |___/\___|_|  \__,_|\__\___|_| |_|  \_/\___/ \__,_|");
             Console.WriteLine("");
             Console.ResetColor();
             Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
@@ -462,12 +465,13 @@ namespace CombatSimulator
                 };
 
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Magenta;
             foreach (var line in linesToPrint)
             {
                 Console.SetCursorPosition(line.X, line.Y);
                 Console.Write(line.Text);
             }
-
+            Console.ResetColor();
 
 
         }
@@ -478,6 +482,7 @@ namespace CombatSimulator
         public static void GameIntro()
         {
             Console.CursorVisible = false;
+       
 
             var arr = new[]
         {
