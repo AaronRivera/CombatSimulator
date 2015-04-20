@@ -11,11 +11,12 @@ namespace CombatSimulator
     {
         static void Main(string[] args)
         {
+            //adjusts the size of the window height to 45 from normal 25
             Console.WindowHeight = 45;
-            //GameIntro();
+            //calls the function that plays intro to the game
+            GameIntro();
+            //calls the function to play the game 
             PlayGame();
-            //Console.ReadKey();
-
             Console.ReadKey();
 
 
@@ -39,7 +40,6 @@ namespace CombatSimulator
                 gameStats(playerPoints, computerPoints);
                 KittyMoods(1);
                 Messages();
-
                 gameOptions();
 
                 bool validate = false;
@@ -66,9 +66,9 @@ namespace CombatSimulator
                 {
                     //if the option is 1 then it calls the fuction attack
                     //depending what the function returns then it substract the point from the gamer points
-                    case 1: computerPoints = computerPoints - (pointsDeducted = Attack(70, 5, 15));
+                    case 1: computerPoints = computerPoints - (pointsDeducted = Attack(70, 20, 35));
                         //if the player points are less than 0 then it sets the gamer points to zero
-                        if (playerPoints < 0) { playerPoints = 0; }
+                        if (computerPoints < 0) { computerPoints = 0; }
                         //calls all these functions to keep the game screen updating
                         GameInstructions();
                         gameStats(playerPoints, computerPoints);
@@ -81,10 +81,10 @@ namespace CombatSimulator
                         break;
                     //if the option is 2 then it calls the function Magic Attack
                     //depending what the function returns then it substract the point from the gamer points
-                    case 2: playerPoints = playerPoints - MagicAttack();
-                        computerPoints = computerPoints - (pointsDeducted = Attack(80, 10, 15));
+                    case 2: 
+                        computerPoints = computerPoints - (pointsDeducted = MagicAttack());
                         //if the player points are less than 0 then it sets the gamer points to zero
-                        if (playerPoints < 0) { playerPoints = 0; }
+                        if (computerPoints < 0) { computerPoints = 0; }
                         //calls all these functions to keep the game screen updating
                         GameInstructions();
                         gameStats(playerPoints, computerPoints);
@@ -96,10 +96,10 @@ namespace CombatSimulator
                         break;
                     //if the option is 3 then it calls the function heal power
                     //depending what the function returns then it substract the point from the gamer points
-                    case 3: playerPoints = playerPoints - HealPower();
-                        computerPoints = computerPoints - (pointsDeducted = Attack(80, 10, 20));
+                    case 3:
+                        computerPoints = computerPoints - (pointsDeducted = HealPower());
                         //if the player points are less than 0 then it sets the gamer points to zero
-                        if (playerPoints < 0) { playerPoints = 0; }
+                        if (computerPoints < 0) { computerPoints = 0; }
                         //calls all these functions to keep the game screen updating
                         GameInstructions();
                         gameStats(playerPoints, computerPoints);
@@ -116,7 +116,7 @@ namespace CombatSimulator
                 //depending what the function returns then it substract the point from the computer
                 playerPoints = playerPoints - (pointsDeducted = Attack(80, 5, 15));
                 //if the player points are less than 0 then it sets the computer points to zero
-                if (computerPoints < 0) { computerPoints = 0; }
+                if (playerPoints < 0) { playerPoints = 0; }
                 gameStats(playerPoints, computerPoints);
                 //calls all these functions to keep the game screen updating
                 GameInstructions();
@@ -279,6 +279,7 @@ namespace CombatSimulator
         public static void GameInstructions()
         {
             Console.Clear();
+            //Title of the game
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(@"         ___           _ _     _      _     _   _                        
         /   \___  _ __( ) |_  | | ___| |_  | |_| |__   ___               
@@ -294,6 +295,7 @@ namespace CombatSimulator
             Console.ResetColor();
             Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             Console.ForegroundColor = ConsoleColor.Cyan;
+            //game instructions area
             Console.WriteLine("   You have a very cute kitty, her name is Laleisha she likes to play ");
             Console.WriteLine("              with her toys and sometimes she likes to get pet");
             Console.WriteLine("      if she is not in the mood to play or be pet she'll scratch you");
@@ -376,6 +378,7 @@ namespace CombatSimulator
             switch (mood)
             {
                 case 1:
+                    //initial mood
                     Console.WriteLine("");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine(@"      ,-~-,       ,-~~~~-,    /\  /\
@@ -392,6 +395,7 @@ namespace CombatSimulator
                     break;
 
                 case 2:
+                    //mood when the gamer loses
                     Console.WriteLine("");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(@"                                _.---.
@@ -413,6 +417,7 @@ namespace CombatSimulator
                     Console.ResetColor();
                     break;
                 case 3:
+                    //mood when the user wins
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("");
                     Console.WriteLine(@"               /\____/\    __
@@ -483,7 +488,7 @@ namespace CombatSimulator
         {
             Console.CursorVisible = false;
        
-
+            //graphics that are displays at the begining of the game
             var arr = new[]
         {
 @"             *     ,MMM8&&&.            *",
@@ -519,10 +524,12 @@ namespace CombatSimulator
 @"         /____/\___/_/   \__,_/\__/\___/_/ /_/   \__, /\____/\__,_/     ",      
 @"                                                /____/  "   ,     };
 
+            //defines the size of the array "Graphics"
             var maxLength = arr.Aggregate(0, (max, line) => Math.Max(max, line.Length));
             var x = Console.BufferWidth / 2 - maxLength / 2;
             for (int y = -arr.Length; y < Console.WindowHeight + arr.Length; y++)
             {
+                //draws the message moving down
                 ConsoleDraw(arr, x, y);
                 Thread.Sleep(100);
             }
