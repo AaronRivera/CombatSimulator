@@ -17,6 +17,7 @@ namespace CombatSimulator
             GameIntro();
             //calls the function to play the game 
             PlayGame();
+            //waits until the user press a key then exits the game
             Console.ReadKey();
 
 

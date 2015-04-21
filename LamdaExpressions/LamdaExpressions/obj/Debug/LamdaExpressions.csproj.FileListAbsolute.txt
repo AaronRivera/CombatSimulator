@@ -1,0 +1,6 @@
+C:\Users\Technologist\Documents\GitHub\CombatSimulator\LamdaExpressions\LamdaExpressions\bin\Debug\LamdaExpressions.exe.config
+C:\Users\Technologist\Documents\GitHub\CombatSimulator\LamdaExpressions\LamdaExpressions\obj\Debug\LamdaExpressions.csprojResolveAssemblyReference.cache
+C:\Users\Technologist\Documents\GitHub\CombatSimulator\LamdaExpressions\LamdaExpressions\bin\Debug\LamdaExpressions.exe
+C:\Users\Technologist\Documents\GitHub\CombatSimulator\LamdaExpressions\LamdaExpressions\bin\Debug\LamdaExpressions.pdb
+C:\Users\Technologist\Documents\GitHub\CombatSimulator\LamdaExpressions\LamdaExpressions\obj\Debug\LamdaExpressions.exe
+C:\Users\Technologist\Documents\GitHub\CombatSimulator\LamdaExpressions\LamdaExpressions\obj\Debug\LamdaExpressions.pdb
